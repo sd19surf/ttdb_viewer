@@ -16,9 +16,9 @@
 
 		<!---bootstrap needed for modal and pop-ups--->
 		<!---comment these three lines out for production--->
-		<!---<script src="./js/jquery-3.2.1.min.js"></script>
+		<script src="./js/jquery-3.2.1.min.js"></script>
 		<script src="./js/bootstrap.min.js"></script>
-		<link href="./css/bootstrap.min.css" rel="stylesheet">--->
+		<link href="./css/bootstrap.min.css" rel="stylesheet">
 		
 		<!---Cross browser support--->
 		<script src="./js/polyfill.min.js"></script>
@@ -36,4 +36,8 @@
 		<script src="./js/leaflet.wms.js"></script>
 		<script src="./js/leaflet.ajax.min.js"></script>
 	</head>
+
+
+	 <cfset sites = CreateObject("component","ttdb")>
+	 <cfset sitesJSON = sites.selectSites() >
 </cfoutput>

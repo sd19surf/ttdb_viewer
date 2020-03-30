@@ -142,7 +142,7 @@ L.TimeDimension.Layer.threatAssessment = L.TimeDimension.Layer.extend({
                 var filename = undefined
                
                     url = "https://ows.sc.afcent.af.mil/product/map/ttdb/ttdb_snr.cfc?method=retrieveGeoJSON&startDateTime=" + startTime + "&endDateTime=" + endTime + "&returnFormat=json"
-                   // url = "./test.json";
+                    //url = "./test.json";
             } catch (err) {
                 console.log('No entry in database: ' + [[this.options.type],[window.AOR],[this.options.symbol],[window.refTime],[this.options.level],[time_s]].join('-'));
                 this.attribution = "Unavailable";
