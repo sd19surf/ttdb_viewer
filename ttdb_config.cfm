@@ -1,12 +1,4 @@
 
-<!---needs to move to a cfc--->
-<!---<cfquery name="getSites" datasource="#request.datasource#">
-	SELECT ICAO, TAF, STATION_NAME AS SITE_NAME, LAT AS MAP_LAT, LON AS MAP_LON
-	FROM #request.web_table#.ICAO
-	WHERE TAF = '1' AND
-	LAT IS NOT NULL AND
-	LON IS NOT NULL
-</cfquery>---->
 
 <cfoutput>
 	<head>
@@ -16,9 +8,9 @@
 
 		<!---bootstrap needed for modal and pop-ups--->
 		<!---comment these three lines out for production--->
-		<script src="./js/jquery-3.2.1.min.js"></script>
+		<!---<script src="./js/jquery-3.2.1.min.js"></script>
 		<script src="./js/bootstrap.min.js"></script>
-		<link href="./css/bootstrap.min.css" rel="stylesheet">
+		<link href="./css/bootstrap.min.css" rel="stylesheet">--->
 		
 		<!---Cross browser support--->
 		<script src="./js/polyfill.min.js"></script>
