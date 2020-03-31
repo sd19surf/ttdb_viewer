@@ -1,0 +1,91 @@
+#map {
+    position: relative;
+    border: 1px solid black;
+    border-radius: 8px;
+    height: 750px;  /* or as desired */
+    width: 95%;  /* This means "100% of the width of its container", the .col-md-8 */
+  }
+
+.div.threats{
+    width:350px;
+}
+
+div.info.legend.leaflet-control {
+    background-color: #eaeaea;
+    min-width: 150px;
+    
+}
+div.side{
+    font-weight: 400;
+    height: 30px;
+    width: 350px;
+    overflow: hidden;
+}
+div.side:hover{
+    height: 260px;
+}
+div.side.tornado {
+    background-color: #4403ac;
+    border-radius: 2px;
+    border: 2px solid black;
+    opacity: 0.9;
+
+    
+}
+div.side.blizzard {
+    background-color: #0393ac;
+    border-radius: 2px;
+    border: 2px solid black;
+    opacity: 0.9;
+    
+}
+div.side.nonconwind35 {
+    background-color: #ac0382;
+    border-radius: 2px;
+    border: 2px solid black;
+    opacity: 0.9;
+    
+}
+div.side.nonconwind50 {
+    background-color: #3e4041;
+    border-radius: 2px;
+    border: 2px solid black;
+    opacity: 0.9;
+    
+}
+div.side.svrtstm{
+    background-color: #3e4041;
+    border-radius: 2px;
+    border: 2px solid black;
+    opacity: 0.9;
+    
+}
+div.side.mdttstm {
+    background-color: #025015;
+    border-radius: 2px;
+    border: 2px solid black;
+    opacity: 0.9;
+    
+}
+div.side.fzprecip {
+    background-color: #9933FF;
+    border-radius: 2px;
+    border: 2px solid black;
+    opacity: 0.9;
+    
+}
+
+
+
+
+i.circle {
+    opacity: 1;
+    fill-opacity: 1;
+    border-radius: 6px;
+    line-height: 2px;
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin-right: 10px;
+    opacity: 0.7;
+}

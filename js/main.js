@@ -2,6 +2,8 @@ window.DEBUG = false;
 window.FORECAST_DURATION = 120;
 window.FORECAST_INTERVAL = 3;
 window.refTime = null;
+categories = [];
+
 
     var displayDate = closestThreeHour(new Date());
 	
@@ -19,6 +21,7 @@ window.refTime = null;
     },
     onEachFeature: function (feature, layer) {
 						//add some css or html styling to improve the UX/UI
+					makeThreatBoxes(feature);
 						 var popTemplate = '<h4><b>'+getFeatureType(feature.properties.type)+'</b></h4>\
 							<h5><b>Event Start</b></h5>'
 							+feature.properties['startTime'].replace('T', ' @ ') + 'Z\
@@ -35,10 +38,12 @@ window.refTime = null;
                     
     },
     style: function(feature){
-            return feature.properties.style;
+			
+			return feature.properties.style;
+			
         
     },
-    classname: "threats"
+	classname: "threats"
 });
     
     var threatAssess =  L.timeDimension.layer.threatAssessment(ThreatAssessment, {
@@ -79,7 +84,8 @@ window.refTime = null;
 			timeSlider: true,
 			speedSlider: true
 		},
-        layers:[baseMapESRI, baseMapESRILabels, threatAssess]
+		layers:[baseMapESRI, baseMapESRILabels, threatAssess]
+		
         
     });
 
@@ -151,7 +157,7 @@ window.refTime = null;
 		if (type === 'tornado')
 			threatType = '<i class="wi wi-tornado"></i> Tornado';
 		if (type === 'svrtstm')
-                threatType = '<i class="wi wi-thunderstorm"></i> Severe Thunderstorms';
+				threatType = '<i class="wi wi-thunderstorm"></i> Severe Thunderstorms';
 		if (type === 'mdttstm')
                 threatType = '<i class="wi wi-thunderstorm"></i> Moderate Thunderstorms';
 		if (type === 'fzprecip')
@@ -172,6 +178,47 @@ window.refTime = null;
                 threatType = '<i class="wi wi-hurricane"></i> Significant Tropical';
 		return threatType;
 	}	
+
+
+	function getFeaturePlainText(type){
+		switch(type){
+			case "tornado":
+				return 'Tornado';
+				break;
+			case "svrtstm":
+				return 'Severe Thunderstorms';
+				break;
+			case "mdttstm":
+				return 'Moderate Thunderstorms';
+				break;
+			case "fzprecip":
+				return 'Freezing Precipitation';
+				break;
+			case "blizzard":
+				return 'Blizzard/Winter Storm';
+				break;
+			case "heavyrain":
+				return 'Heavy Rain';
+				break;
+			case "nonconwind50":
+				return 'Non-Convective Winds GTE 50kt';
+				break;
+			case "nonconwind35":
+				return 'Non-Convective Winds GTE 35kt';
+				break;
+			case "dust":
+				return 'Dust';
+				break;
+			case "cavnotok":
+				return 'Unsuitable Alternate - CIG/VIS < 1000/2';
+				break;
+			case "tropical":
+				return 'Significant Tropical';
+				break;
+			default:
+				return "Unknown Threats";
+		}
+	}
 
 
 	$(document).ready(function() {
@@ -221,3 +268,22 @@ var offset = 10800;
         return epochTime - (epochTime % offset);
     }        
 }
+function makeThreatBoxes(feature){
+	outerDiv = document.getElementById('threats');
+	var innerDivs = document.createElement('div');
+	innerDivs.id = feature.properties.uuid;
+	innerDivs.className = 'side '+feature.properties.type;
+	innerDivs.innerHTML = '<strong>'+getFeaturePlainText(feature.properties.type)+'/ '+feature.properties.unitNumber+' OWS </strong>';
+	innerDivs.innerHTML += '<p>Start: '+feature.properties.startTime+' to '+feature.properties.endTime+'</p>'
+	innerDivs.innerHTML += '<p>Details: '+feature.properties.description+'</p>';
+	innerDivs.innerHTML += '<p>Sites: '+feature.properties.sites+'</p>';
+	outerDiv.appendChild(innerDivs);
+	document.getElementById(feature.properties.uuid).addEventListener("click",function(){
+		obMap.flyTo([feature.geometry.coordinates[0][0][1],feature.geometry.coordinates[0][0][0]],6)
+	});
+    
+}
+
+
+
+	
